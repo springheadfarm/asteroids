@@ -25,6 +25,10 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 
+    # Load and scale the background image
+    background = pygame.image.load("background.png")
+    background = pygame.transform.scale(background, (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
@@ -54,7 +58,8 @@ def main():
             if event.type == pygame.QUIT:
                 return
             
-        screen.fill((0,0,0))
+        #screen.fill((0,0,0))
+        screen.blit(background, (0,0))
 
         for u in updatable:
             u.update(dt)
