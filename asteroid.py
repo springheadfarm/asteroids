@@ -2,8 +2,12 @@ from circleshape import CircleShape
 import pygame
 import constants
 import random
+from gamestate import GameState
 
 class Asteroid(CircleShape):
+    game_state = None
+
+    global score
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
 
@@ -14,6 +18,8 @@ class Asteroid(CircleShape):
         self.position += self.velocity * dt
 
     def split(self):
+
+        GameState.score += self.radius
         self.kill()
 
         if self.radius <= constants.ASTEROID_MIN_RADIUS:
